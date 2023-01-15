@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- html内で変数を表示するときは{{var}} -->
+        <title>{{name}}</title>
+    </head>
+    
+    <body>
+    <img src="\static\images\nimotu.png" alt="荷物">
+    <h1>持ち物チェックリスト</h1>
+
+    {% for motimono in all_motimono %}
+    <p>{{motimono.title}}：{{motimono.body}}</p>
+    {% endfor %}
+
+    <form action="/add" method="post">
+        <input type="text" name="title" placeholder="title">
+        <input type="text" name="body" placeholder="body">
+        <input type="submit" value="Add">
+    </form>
+
+    <form action="/delete" method="post">
+        <input type="submit" value="Delete Selected All Motimono">
+        {% for motimono in all_motimono %}
+        <div><input type="checkbox" name="delete" value={{motimono.id}}>{{motimono.title}}：{{motimono.body}}</input></div>
+        {% endfor %}
+    </form>
+
+    
+
+    </body>
+</html>
